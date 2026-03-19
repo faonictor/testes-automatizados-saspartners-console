@@ -1,0 +1,53 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- Ambientes Virtuais (Venv) ---
+venv/
+env/
+ENV/
+.venv/
+
+# --- Robot Framework (Logs e Reports) ---
+log.html
+report.html
+output.xml
+*.png
+selenium-screenshot-*.png
+
+# --- Drivers e Navegadores (CRUCIAL para o seu caso) ---
+# Ignora tudo dentro das pastas
+drivers/chrome-win64/*
+drivers/chromedriver-win64/*
+
+# Mas não ignore os arquivos .gitkeep
+!drivers/chrome-win64/.gitkeep
+!drivers/chromedriver-win64/.gitkeep
+*.exe
+*.dll
+*.msi
+
+
+# --- Segurança ---
+.env
+
+# --- Configurações de IDE ---
+.vscode/
+.idea/

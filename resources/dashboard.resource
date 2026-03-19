@@ -1,0 +1,191 @@
+### Este arquivo contém tudo relacionado a ações e validações na tela principal (dashboard)
+
+*** Variables ***
+### Variáveis funcionando da tela principal do dashboard
+${dashboard.janela_principal}                                       xpath://*[@id="main-wrapper"]/div/div[1]/app-dashboard
+
+### Variáveis que estão no cabeçalho do dashboard
+${cabeçalho.logo}                                                   xpath://img[contains(@alt,"logo")]
+${cabeçalho.botão_noturno}                                          xpath://img[@alt='ícone do tema' and (@src='assets/images/Icone noite.svg' or @src='assets/images/Icone dia.svg')]
+${cabeçalho.manual_do_usuário}                                      xpath://i[contains(@class, "fa-book")]
+${cabeçalho.notificações}                                           xpath://i[contains(@class, "mdi-bell")]
+${cabeçalho.bloco_de_anotações}                                     xpath://i[contains(@class, "mdi-clipboard-text")]
+${cabeçalho.perfil}                                                 xpath://img[contains(@alt,"user")]
+${cabeçalho.perfil.modal}                                           xpath:(//*[@id="dropdownConfig"])[2]
+${cabeçalho.perfil.nome_e_sobrenome}                                xpath://*[@id="dropdownConfig"]/div[1]/div[2]/h4
+${cabeçalho.perfil.email}                                           xpath://*[@id="dropdownConfig"]/div[1]/div[2]/p
+${cabeçalho.perfil.dados_cadastrais}                                xpath://a[contains(text(), "Dados cadastrais")]
+${cabeçalho.perfil.alterar_senha}                                   xpath://a[contains(text(), "Alterar senha")]
+${cabeçalho.perfil.validação_duas_etapas}                           xpath://i[contains(@class, "ti-lock") or contains(@class, "ti-unlock")]
+${cabeçalho.perfil.sair}                                            xpath://a[i[contains(@class, 'fa-power-off')]]
+
+### Variáveis da página Dados Cadastrais do Perfil do Usuário
+${dados_cadastrais.título}                                          xpath://h4[@class='page-title' and normalize-space(.)='Dados cadastrais']
+${dados_cadastrais.formulário}                                      xpath://*[@id="main-wrapper"]/div/div[1]/app-edit-user-data
+${dados_cadastrais.cpf}                                             xpath://input[@id='input-text-CPF']
+${dados_cadastrais.rani}                                            xpath://input[@id='input-text-RANI']
+${dados_cadastrais.rg}                                              xpath://input[@id='input-text-RG']
+${dados_cadastrais.data_nascimento}                                 xpath://*[@id="input-text-Data nascimento (00/00/0000)"]
+${dados_cadastrais.idade}                                           xpath://app-formx-section[1]/div/div[2]/div/div/div[1]/span
+${dados_cadastrais.cartão_sus}                                      xpath://*[@id="input-text-Cartão SUS (CNS)"]
+${dados_cadastrais.email}                                           xpath://*[@id="input-text-E-Mail"]
+${dados_cadastrais.ddd}                                             xpath://*[@id="input-text-DDD"]
+${dados_cadastrais.numero}                                          xpath://*[@id="input-text-N. Contato"]
+${dados_cadastrais.nome}                                            xpath://input[@id='input-text-Nome ']
+${dados_cadastrais.sobrenome}                                       xpath://input[@id='input-text-Sobrenome ']
+${dados_cadastrais.nome_social}                                     xpath://*[@id="input-text-Nome social"]
+${dados_cadastrais.gênero}                                          xpath://label[text()='Gênero']/following::span[contains(@class, 'dropdown-btn')][1]
+${dados_cadastrais.sexo}                                            xpath://label[text()='Sexo']/following::span[contains(@class, 'dropdown-btn')][1]
+${dados_cadastrais.cor}                                             xpath://label[text()='Raça/cor']/following::span[contains(@class, 'dropdown-btn')][1]
+${dados_cadastrais.etnia}                                           xpath://input[@id='input-text-Etnia']
+${dados_cadastrais.nome_da_mãe}                                     xpath://input[@id='input-text-Nome da Mãe']
+${dados_cadastrais.profissão}                                       xpath://label[text()='Profissão']/following::span[contains(@class, 'dropdown-btn')][1]
+${dados_cadastrais.especialidades}                                  xpath://label[text()='Especialidades']/following::span[contains(@class, 'dropdown-btn')][1]
+${dados_cadastrais.tipo_de_documento}                               xpath://label[text()='Tipo de documento']/following::span[contains(@class, 'dropdown-btn')][1]
+${dados_cadastrais.número_do_documento}                             xpath://*[@id="input-text-Número do documento"]
+${dados_cadastrais.estado}                                          xpath://label[text()='Estado']/following::span[contains(@class, 'dropdown-btn')][1]
+${dados_cadastrais.endereço.sabe_cep_sim}                           xpath://app-formx-section/div/div[2]/div/div/div[1]/div/label[2]/input
+${dados_cadastrais.endereço.sabe_cep_não}                           xpath://app-formx-section/div/div[2]/div/div/div[1]/div/label[3]/input
+${dados_cadastrais.endereço.cep}                                    xpath://*[@id="input-text-CEP"]
+${dados_cadastrais.endereço.logradouro}                             xpath://*[@id="input-text-Logradouro"]
+${dados_cadastrais.endereço.número}                                 xpath://*[@id="input-text-Número"]
+${dados_cadastrais.endereço.bairro}                                 xpath://*[@id="input-text-Bairro"]
+${dados_cadastrais.endereço.complemento}                            xpath://*[@id="input-text-Complemento"]
+${dados_cadastrais.endereço.unidade_da_federação}                   xpath://label[text()='Unidade da Federação']/following::span[contains(@class, 'dropdown-btn')][1]
+${dados_cadastrais.endereço.município}                              xpath://label[text()='Município']/following::span[contains(@class, 'dropdown-btn')][1]
+${dados_cadastrais.observação}                                      xpath://textarea[@id='input-text-Observação']
+${dados_cadastrais.procedência}                                     xpath://h4[contains(., 'Procedência')]
+${dados_cadastrais.procedência.origem_do_chamado}                   xpath://label[contains(., 'Origem do Chamado')]/following-sibling::ng-multiselect-dropdown//div[@class='multiselect-dropdown']
+${dados_cadastrais.procedência.via_de_acesso}                       xpath://ng-multiselect-dropdown[@id='input-selectVia de Acesso']//div[@class='multiselect-dropdown']
+${dados_cadastrais.endereço.botão.adicionar_cns}                    xpath://button[normalize-space()='Adicionar CNS']
+${dados_cadastrais.botão.adicionar_telefone}                        xpath://button[normalize-space()='Adicionar telefone']
+${dados_cadastrais.endereço.botão.pesquisar_cep}                    xpath://button[normalize-space()='Pesquisar CEP']
+${dados_cadastrais.botão.salvar_e_continuar}                        xpath://button[normalize-space()='Salvar e continuar']
+
+### Variáveis da página alterar senha no perfil
+${alteração_de_senhas}                                              xpath://*[@id="main-wrapper"]/div/app-breadcrumb//h4[text()="Alterar senha"]
+${alteração_de_senhas.título}                                       xpath://app-change-password/div/h3[text()="Alteração de senhas"]
+${alteração_de_senhas.subtítulo}                                    xpath://app-change-password/div/div[text()=" Sua senha deve conter no mínimo 8 dígitos, sendo um deles um caractere especial, uma letra maiúscula, uma letra minúscula e um número. "]
+${alteração_de_senhas.senha_atual}                                  xpath://*[@id="input-password-Digite a senha atual"]
+${alteração_de_senhas.nova_senha}                                   xpath://*[@id="input-password-Nova senha"]
+${alteração_de_senhas.confirme_nova_senha}                          xpath://*[@id="input-password-Confirme a nova senha"]
+${alteração_de_senhas.botão.confirmar}                              xpath://button[contains(text(),"Confirmar")]
+${alteração_de_senhas.botão.mostrar_senhas}                         xpath://button[contains(text(),"Mostrar senhas")]
+${alteração_de_senhas.botão.limpar_formulário}                      xpath://button[contains(text(),"Limpar formulário")]
+
+### Variáveis dos botões na tela de dashboard
+${dashboard.botão.Atendimento}                                      xpath://button[contains(text(),"Atendimento")]
+${dashboard.botão.IrParaTelematriciamento}                          xpath://button[contains(text(),"Ir para telematriciamento")]
+${dashboard.botão.IrParaAgenda}                                     xpath://button[contains(text(),"Ir para agenda")]
+${dashboard.botão.IrParaSalaDeAtendimento}                          xpath://button[contains(text(),"Ir para sala de atendimento")]
+${dashboard.botão.IrParaGestãoDeAgenda}                             xpath://button[contains(text(),"Ir para gestão de agenda")]
+${dashboard.botão.IrParaDemandaEspontânea}                          xpath://button[contains(text(),"Ir para demanda espontânea")]
+${dashboard.botão.VerLista}                                         xpath://button[contains(text(),"Ver lista")]
+${dashboard.botão.Relatórios}                                       xpath://button[contains(text(),"Relatórios")]
+${dashboard.botão.Gestão}                                           xpath://button[contains(text(),"Gestão")]
+${dashboard.botão.cadastroUsuários}                                 xpath:(//button[contains(text(),"Cadastro")])[1]
+${dashboard.botão.cadastroPacientes}                                xpath:(//button[contains(text(),"Cadastro")])[2]
+${dashboard.botão.AnexarDocumentos}                                 xpath://button[contains(text(),"Anexar Documentos")]
+
+### Variáveis das figuras na tela de dashboard
+${dashboard.figura.Atendimento}                                     xpath://*[@src="assets/images/ps/exams.png"]
+${dashboard.figura.IrParaTelematriciamento}                         xpath://*[@src="assets/images/ps/telematricing2.png"]
+${dashboard.figura.IrParaAgenda}                                    xpath:(//*[@src="assets/images/ps/calendar-icon.png"])[1]
+${dashboard.figura.IrParaSalaDeAtendimento}                         xpath:(//*[@src="assets/images/ps/calendar-icon.png"])[2]
+${dashboard.figura.IrParaGestãoDeAgenda}                            xpath:(//*[@src="assets/images/ps/calendar-icon.png"])[3]
+${dashboard.figura.IrParaDemandaEspontânea}                         xpath://*[@src="assets/images/general_area-removebg-preview.png"]
+${dashboard.figura.VerLista}                                        xpath://*[@src="assets/images/specialities_icon.png"]
+${dashboard.figura.Relatórios}                                      xpath://*[@src="assets/images/ps/graph2.png"]
+${dashboard.figura.Gestão}                                          xpath://*[@src="assets/images/ps/rh2.png"]
+${dashboard.figura.cadastroUsuários}                                xpath:(//*[@src="assets/images/ps/add_user.png"])[1]
+${dashboard.figura.cadastroPacientes}                               xpath:(//*[@src="assets/images/ps/add_user.png"])[2]
+${dashboard.figura.AnexarDocumentos}                                xpath://*[@src="../../../assets/images/ps/icone_anexos.png"]
+
+### Variáveis dos títulos na tela de dashboard
+${dashboard.titulo.Dashboard}                                       xpath://*/h4[text()="Dashboard"]
+${dashboard.titulo.EscolhaUmaOpção}                                 xpath://*[contains(@class, 'card-title') and contains(text(), 'Escolha uma opção')]
+
+${dashboard.titulo.AcessarConsulta}                                 xpath://*/h5[text()="Acessar Consulta"]
+${dashboard.titulo.Telematriciamento}                               xpath://*/h5[text()="Telematriciamento"]
+${dashboard.titulo.Agenda}                                          xpath://*/h5[text()="Agenda"]
+${dashboard.titulo.SalaDeAtendimento}                               xpath://*/h5[text()="Sala de Atendimento"]
+${dashboard.titulo.GestãoDeAgenda}                                  xpath://*/h5[text()="Gestão de Agenda"]
+${dashboard.titulo.DemandaEspontânea}                               xpath://*/h5[text()="Demanda Espontânea"]
+${dashboard.titulo.Interconsultas}                                  xpath://*/h5[text()="Interconsultas Em Sua Especialidade"]
+${dashboard.titulo.RelatóriosAdministrativos}                       xpath://*/h5[text()="Relatórios Administrativos"]
+${dashboard.titulo.GestãoDeUsuário}                                 xpath://*/h5[text()="Gestão de Usuários"]
+${dashboard.titulo.cadastroUsuários}                                xpath://*/h5[text()="Cadastrar Usuários"]
+${dashboard.titulo.cadastroPacientes}                               xpath://*/h5[text()="Cadastrar Pacientes"]
+${dashboard.titulo.MeusArquivos}                                    xpath://*/h5[text()="Meus Arquivos"]
+
+${dashboard.rodapé}                                                 xpath://footer[contains(text(), 'SAS Smart')]
+
+### Variáveis das abas de menu na parte superior do dashboard
+${menu.dashboard}                                                   xpath://span[@class="hide-menu" and text()="Dashboard"]
+
+${menu.gestao_de_agenda}                                            xpath://span[@class="hide-menu" and text()="Gestão de Agenda"]
+${menu.gestao_de_agenda.pesquisar_paciente}                         xpath://span[text()="Pesquisar paciente"]
+${menu.gestao_de_agenda.configuracao_de_agenda}                     xpath://span[text()="Configuração de agenda"]
+${menu.gestao_de_agenda.cadastro_de_modelo}                         xpath://span[text()="Cadastro de Modelo"]
+
+${menu.sala_de_atendimento}                                         xpath://span[@class="hide-menu" and text()="Sala de Atendimento"]
+
+${menu.jornada_do_paciente}                                         xpath://span[@class="hide-menu" and text()="Jornada do Paciente"]
+${menu.jornada_do_paciente.pesquisar}                               xpath://a[contains(@class,"sidebar-link")]//span[text()="Pesquisar"]
+${menu.jornada_do_paciente.cadastrar}                               xpath://a[contains(@class,"sidebar-link")]//span[text()="Cadastrar"]
+${menu.jornada_do_paciente.Triagem_presencial}                      xpath://a[contains(@class,"sidebar-link")]//span[text()="Triagem presencial >"]
+${menu.jornada_do_paciente.Triagem_presencial.Lista_de_triagem}     xpath://a[contains(@class,"sidebar-link")]//span[text()="Lista de triagem"]
+${menu.jornada_do_paciente.telematriciamento}                       xpath:(//a[contains(@class,"sidebar-link")]//span[text()="Telematriciamento"])[1]    # pega 2
+${menu.jornada_do_paciente.lista_recepcao}                          xpath://a[contains(@class,"sidebar-link")]//span[text()="Lista recepção"]
+${menu.jornada_do_paciente.agendamentos}                            xpath://a[contains(@class,"sidebar-link")]//span[text()="Agendamentos"]
+${menu.jornada_do_paciente.lista_de_espera}                         xpath://a[contains(@class,"sidebar-link")]//span[text()="Lista de espera"]
+${menu.jornada_do_paciente.monitoramento}                           xpath://a[contains(@class,"sidebar-link")]//span[text()="Monitoramento"]
+
+${menu.Interconsultas}                                              xpath://span[@class="hide-menu" and text()="Interconsultas"]
+${menu.Interconsultas.minhas_interconsultas}                        xpath://a[contains(@class,"sidebar-link")]//span[text()="Minhas interconsultas"]
+${menu.interconsultas.gerenciar_interconsultas}                     xpath://a[contains(@class,"sidebar-link")]//span[text()="Gerenciar Interconsultas"]
+${menu.interconsultas.interconsultas_atendidas}                     xpath://a[contains(@class,"sidebar-link")]//span[text()="Interconsultas atendidas"]
+
+${menu.grupos_virtuais}                                             xpath://span[@class="hide-menu" and text()="Grupos virtuais"]
+${menu.grupos_virtuais.cadastrar}                                   xpath://a[contains(@class,"sidebar-link")]//span[text()="Cadastrar grupos"]
+${menu.grupos_virtuais.acessar}                                     xpath://a[contains(@class,"sidebar-link")]//span[text()="Acessar grupos virtuais"]
+
+${menu.telematriciamento}                                           xpath:(//span[@class="hide-menu" and text()="Telematriciamento"])[2]
+${menu.telematriciamento.cadastrar_grupos_de_pacientes}             xpath://a[contains(@class,"sidebar-link")]//span[text()="Cad. grupo de pacientes"]
+${menu.telematriciamento.lista_de_pacientes}                        xpath://a[contains(@class,"sidebar-link")]//span[text()="Lista de pacientes"]
+${menu.telematriciamento.minhas_solicitações}                       xpath://a[contains(@class,"sidebar-link")]//span[text()="Minhas solicitações"]
+
+${menu.gestao_de_rh}                                                xpath://span[@class="hide-menu" and text()="Gestão de RH"]
+${menu.gestao_de_rh.gestao_de_usuáios}                              xpath://a[contains(@class,"sidebar-link")]//span[text()="Gestão de usuários"]
+${menu.gestao_de_rh.cadastro_de_profissoes}                         xpath://a[contains(@class,"sidebar-link")]//span[text()="Cadastro de profissões"]
+${menu.gestao_de_rh.documentos_profissionais}                       xpath://a[contains(@class,"sidebar-link")]//span[text()="Documentos profissionais"]
+
+${menu.relatorios}                                                  xpath://span[@class="hide-menu" and text()="Relatórios"]
+${menu.relatorios.gerenciais_administrativos}                       xpath://a[contains(@class,"sidebar-link")]//span[text()="Gerais/Administrativos"]
+${menu.relatorios.logs_de_acesso}                                   xpath://a[contains(@class,"sidebar-link")]//span[text()="Logs de acesso"]
+${menu.relatorios.faltas_de_pacientes}                              xpath://a[contains(@class,"sidebar-link")]//span[text()="Faltas de pacientes"]
+${menu.relatorios.relatório_por_periodo}                            xpath://a[contains(@class,"sidebar-link")]//span[text()="Relatório por período"]
+${menu.relatorios.relatório_de_triagem}                             xpath://a[contains(@class,"sidebar-link")]//span[text()="Relatório de triagem"]
+
+${menu.configuracoes}                                               xpath://span[@class="hide-menu" and text()="Configurações"]
+${menu.configuracoes.vias_de_acesso}                                xpath://a[contains(@class,"sidebar-link")]//span[text()="Vias de acesso"]
+${menu.configuracoes.origem_do_paciente}                            xpath://a[contains(@class,"sidebar-link")]//span[text()="Origem do paciente"]
+${menu.configuracoes.origem_do_profissional}                        xpath://a[contains(@class,"sidebar-link")]//span[text()="Origem do profissional"]
+${menu.configuracoes.cadastro_de_serviços_prestados}                xpath://a[contains(@class,"sidebar-link")]//span[text()="Cadastro de serviços prestados"]
+${menu.configuracoes.tipo_de_atendimento}                           xpath://a[contains(@class,"sidebar-link")]//span[text()="Tipo de atendimento"]
+${menu.configuracoes.prioridades}                                   xpath://a[contains(@class,"sidebar-link")]//span[text()="Prioridades Interconsulta"]
+${menu.configuracoes.linhas_de_cuidados}                            xpath://a[contains(@class,"sidebar-link")]//span[text()="Linhas de cuidado"]
+${menu.configuracoes.estabelecimentos}                              xpath://a[contains(@class,"sidebar-link")]//span[text()="Gestão de unidades de atendimento  >"]
+${menu.configuracoes.estabelecimentos.cadastrar}                    xpath://a[contains(@class,"sidebar-link")]//span[text()="Cad. da unidade de atendimento"]
+${menu.configuracoes.estabelecimentos.disponibilidade}              xpath://a[contains(@class,"sidebar-link")]//span[text()="Disp. da unidade de atendimento"]
+${menu.configuracoes.cadastrar_exames_procedimentos}                xpath://a[contains(@class,"sidebar-link")]//span[text()="Cad. exames e procedimentos"]
+${menu.configuracoes.cadastro_de_ações}                             xpath://a[contains(@class,"sidebar-link")]//span[text()="Cadastro de ações"]
+${menu.configuracoes.gerenciamento_de_medias}                       xpath://a[contains(@class,"sidebar-link")]//span[text()="Gerenciamento de mídias"]
+${menu.configuracoes.aprovação_de_formulários}                      xpath://a[contains(@class,"sidebar-link")]//span[text()="Aprovação de formulários"]
+${menu.configuracoes.aprovação_de_exames}                           xpath://a[contains(@class,"sidebar-link")]//span[text()="Aprovação de Exames"]
+${menu.configuracoes.formulários}                                   xpath://a[contains(@class,"sidebar-link")]//span[text()="Formulários >"]
+${menu.configuracoes.criação_de_formulários}                        xpath://a[contains(@class,"sidebar-link")]//span[text()="Criação de formulários"]
+${menu.configuracoes.visualização_de_formulários}                   xpath://a[contains(@class,"sidebar-link")]//span[text()="Visualização de formulários"]
+${menu.configuracoes.gestão_de_usts}                                xpath://a[contains(@class,"sidebar-link")]//span[text()="Gestão USTs"]
+${menu.configuracoes.clientes}                                      xpath://a[contains(@class,"sidebar-link")]//span[text()="Clientes"]
+${menu.configuracoes.perfil_de_acesso}                              xpath://a[contains(@class,"sidebar-link")]//span[text()="Perfil de Acesso"]
